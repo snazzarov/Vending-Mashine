@@ -1,0 +1,21 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>No drink!</title>
+</head>
+<body>
+    <div align="center" width="100%"> 
+        <p><h1>Не хватает средств или напиток закончился!</h1></p>
+    </div>
+    <div>
+        @Html.ActionLink("Back to previous page", "PutCoin", new { id = -1 })
+    </div>
+</body>
+</html>

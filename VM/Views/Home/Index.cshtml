@@ -1,0 +1,51 @@
+﻿@model VM.Models.VmData
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<script>
+    var msgValue = '@(ViewBag.Message)';
+    if (msgValue)
+        alert(msgValue);
+</script>
+<table>
+    <tr>
+        <td align="center">
+            <div id="divvm">
+                <p><h4>Напитки</h4></p>
+                @for (int i = 0; i < Model.drinks.drink.Length; i++)
+                {
+                <button>@Html.ActionLink(Model.drinks.GetString(i), "BuyDrink", new { id = i })</button>
+                }
+                <p><h4>Внесенные деньги</h4></p>
+                @for (int i = 0; i < Model.account.coins.Length; i++)
+                {
+                    <button>@(Model.account.GetString(i))</button>
+                }
+                <button>@Html.ActionLink("Вернуть " + @Model.account.Balance().ToString() + "р.", "MoneyBack")</button>
+                <p><h4>Кошелек VM</h4></p>
+                @for (int i = 0; i < Model.money.coins.Length; i++)
+                {
+                <button>@(Model.money.GetString(i))</button>
+                }
+            </div>
+        </td>
+        <td align="center">
+            <div id="divuser">
+                <p><h4>Кошелек</h4></p>
+                @for (int i = 0; i < Model.wallet.coins.Length; i++)
+                {
+                <button>@Html.ActionLink(Model.wallet.coins[i].ToString() + "р. * " + Model.wallet.quantity[i].ToString() + " шт.", "PutCoin", new { id = i })</button>
+                }
+                <p><h4>Напитки</h4></p>
+                @for (int i = 0; i < Model.userDrinks.drink.Length; i++)
+                {
+                <button>@Model.userDrinks.GetString(i)</button>
+                }
+            </div>
+        </td>
+    </tr>
+</table>
+<div align="center">
+    <h2>@Html.ActionLink("Back to main page", "Index")</h2>
+</div>
